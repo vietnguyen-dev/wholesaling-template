@@ -164,12 +164,13 @@ Mobile:
 
 Desktop:
 - 2–3 columns max
+- content in sections other than hero can be centered
 
 ---
 
 ## 🎨 UI Design Rules
 
-- minimalist design
+- minimalist design, wordpress like, simple and straight tp the point, no gradients, each section should have different color background that repeats
 - high contrast CTA
 - consistent spacing
 - clean typography

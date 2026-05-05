@@ -10,7 +10,7 @@ export default function Header() {
             to="/"
             className="inline-flex items-center gap-3 text-sm text-black no-underline"
           >
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-[0.9rem] border border-[var(--chip-line)] bg-[linear-gradient(180deg,#eff6ff,#dbeafe)] text-[0.95rem] font-extrabold text-[var(--lagoon-deep)]">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-[0.9rem] border border-[var(--chip-line)] bg-[#eff6ff] text-[0.95rem] font-extrabold text-[var(--lagoon-deep)]">
               PP
             </span>
             <span className="flex flex-col leading-none">
@@ -58,10 +58,10 @@ export default function Header() {
 
           <Link
             to="/get-offer"
-            className="order-1 inline-flex items-center justify-center rounded-[0.8rem] bg-[#d92c37] px-5 py-3 text-[0.92rem] font-extrabold uppercase tracking-[0.03em] text-white no-underline transition hover:-translate-y-0.5 hover:bg-[#c62530] hover:text-white lg:order-2"
+            className="order-1 inline-flex items-center justify-center rounded-[0.8rem] bg-[#1d4ed8] px-5 py-3 text-[0.92rem] font-extrabold uppercase tracking-[0.03em] !text-white no-underline transition hover:bg-[#1e40af] hover:!text-white lg:order-2"
             activeProps={{
               className:
-                'order-1 inline-flex items-center justify-center rounded-[0.8rem] bg-[#d92c37] px-5 py-3 text-[0.92rem] font-extrabold uppercase tracking-[0.03em] text-white no-underline transition hover:-translate-y-0.5 hover:bg-[#c62530] hover:text-white lg:order-2',
+                'order-1 inline-flex items-center justify-center rounded-[0.8rem] bg-[#1d4ed8] px-5 py-3 text-[0.92rem] font-extrabold uppercase tracking-[0.03em] !text-white no-underline transition hover:bg-[#1e40af] hover:!text-white lg:order-2',
             }}
           >
             Get Offer

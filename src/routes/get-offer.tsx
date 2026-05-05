@@ -19,25 +19,45 @@ export const Route = createFileRoute('/get-offer')({
 
 function GetOfferPage() {
   return (
-    <main className="page-wrap px-4 py-12">
-      <section className="mx-auto grid max-w-5xl gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-        <article className="island-shell rounded-[2rem] p-6 sm:p-8">
-          <p className="island-kicker mb-3">Get Offer</p>
-          <h1 className="display-title m-0 text-4xl font-bold text-[var(--sea-ink)] sm:text-5xl">
-            {getOfferContent.title}
-          </h1>
-          <p className="mt-4 text-lg leading-8 text-[var(--sea-ink-soft)]">
-            {getOfferContent.description}
-          </p>
-        </article>
+    <main className="pb-20 pt-4 sm:pt-6">
+      <section className="bg-[var(--hero-a)] px-4">
+        <div className="page-wrap py-12 sm:py-16">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,26rem)] lg:items-start">
+            <article className="max-w-3xl">
+              <p className="island-kicker mb-3">Get Offer</p>
+              <h1 className="display-title m-0 text-[2.4rem] leading-[1.02] font-bold text-[var(--sea-ink)] sm:text-[3.4rem]">
+                {getOfferContent.title}
+              </h1>
+              <p className="mt-5 max-w-2xl text-lg leading-8 text-[var(--sea-ink-soft)]">
+                {getOfferContent.description}
+              </p>
+            </article>
 
-        <LeadForm
-          id="offer-form"
-          eyebrow="Property Review"
-          heading={getOfferContent.title}
-          description={getOfferContent.description}
-          buttonText="Request My Offer"
-        />
+            <LeadForm
+              id="offer-form"
+              eyebrow="Property Review"
+              heading={getOfferContent.title}
+              description={getOfferContent.description}
+              buttonText="Request My Offer"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white px-4">
+        <div className="page-wrap py-12 sm:py-16">
+          <div className="rounded-2xl border border-[var(--line)] bg-[var(--sand)] px-6 py-10 sm:px-8 sm:py-12">
+            <div className="max-w-2xl">
+              <p className="island-kicker mb-3">Property Review</p>
+              <h2 className="display-title m-0 text-[2rem] leading-tight font-bold text-[var(--sea-ink)] sm:text-[2.4rem]">
+                {getOfferContent.title}
+              </h2>
+              <p className="mt-5 text-base leading-8 text-[var(--sea-ink-soft)]">
+                {getOfferContent.description}
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   )
