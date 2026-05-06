@@ -9,7 +9,7 @@ export default function Footer() {
         <p className="m-0 text-sm">
           &copy; {year} {siteMeta.brandName}. All rights reserved.
         </p>
-        <p className="island-kicker m-0">
+        <p className="m-0 text-sm">
           {siteMeta.market} Home Buyer Lead Page
         </p>
       </div>

@@ -18,18 +18,17 @@ export const Route = createFileRoute('/faq')({
 
 function FaqPage() {
   return (
-    <main className="pb-20 pt-4 sm:pt-6">
-      <section className="bg-[var(--hero-a)] px-4">
+    <main className="pb-20">
+      <section className="bg-[var(--hero-a)] px-4 text-white">
         <div className="page-wrap py-12 sm:py-16">
           <div className="max-w-3xl">
-            <p className="island-kicker mb-3">FAQ</p>
-            <h1 className="display-title m-0 text-[2.4rem] leading-[1.02] font-bold text-[var(--sea-ink)] sm:text-[3.4rem]">
+            <h1 className="display-title m-0 text-[2.4rem] leading-[1.02] font-bold text-white sm:text-[3.4rem]">
               {faqContent.heading}
             </h1>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-[var(--sea-ink-soft)]">
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-[var(--hero-copy)]">
               {faqContent.subHeading}
             </p>
-            <p className="mt-4 max-w-2xl text-base leading-8 text-[var(--sea-ink-soft)]">
+            <p className="mt-4 max-w-2xl text-base leading-8 text-[var(--hero-copy)]">
               {faqContent.intro}
             </p>
           </div>
@@ -42,7 +41,6 @@ function FaqPage() {
             {faqContent.categories.map((category) => (
               <article key={category.title}>
                 <div className="max-w-3xl">
-                  <p className="island-kicker mb-3">{category.title}</p>
                   <h2 className="display-title m-0 text-[2rem] leading-tight font-bold text-[var(--sea-ink)] sm:text-[2.4rem]">
                     {category.title}
                   </h2>
@@ -62,6 +60,14 @@ function FaqPage() {
                     </article>
                   ))}
                 </div>
+                <div className="mt-8">
+                  <Link
+                    to="/get-offer"
+                    className="inline-flex min-h-14 min-w-[11rem] items-center justify-center rounded-md bg-[#16a34a] px-8 py-4 text-[1rem] leading-none font-bold uppercase !text-white no-underline transition hover:bg-[#15803d] hover:!text-white"
+                  >
+                    Get Offer
+                  </Link>
+                </div>
               </article>
             ))}
           </div>
@@ -72,7 +78,6 @@ function FaqPage() {
         <div className="page-wrap py-12 sm:py-16">
           <div className="rounded-2xl border border-[var(--line)] bg-white px-6 py-10 sm:px-8 sm:py-12">
             <div className="max-w-2xl">
-              <p className="island-kicker mb-3">Next Step</p>
               <h2 className="display-title m-0 text-[2rem] leading-tight font-bold text-[var(--sea-ink)] sm:text-[2.4rem]">
                 {faqContent.contactCtaHeading}
               </h2>
@@ -82,7 +87,7 @@ function FaqPage() {
               <div className="mt-8">
                 <Link
                   to="/contact"
-                  className="inline-flex min-h-12 items-center rounded-md bg-[#1d4ed8] px-6 py-3.5 font-bold !text-white no-underline transition hover:bg-[#1e40af] hover:!text-white"
+                  className="inline-flex min-h-12 items-center rounded-md bg-[#16a34a] px-6 py-3.5 font-bold !text-white no-underline transition hover:bg-[#15803d] hover:!text-white"
                 >
                   {faqContent.contactCtaButton}
                 </Link>

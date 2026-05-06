@@ -14,7 +14,7 @@ export default function LeadForm({
   id,
 }: LeadFormProps) {
   const primaryCta =
-    'inline-flex min-h-13 items-center justify-center rounded-md bg-[#1d4ed8] px-6 py-4 text-[1rem] leading-none font-extrabold !text-white no-underline transition hover:bg-[#1e40af] hover:!text-white'
+    'inline-flex min-h-14 items-center justify-center rounded-md bg-[#16a34a] px-8 py-4 text-[1.05rem] leading-none font-extrabold uppercase !text-white no-underline transition hover:bg-[#15803d] hover:!text-white'
   const fieldClass =
     'w-full rounded-md border border-[var(--line)] bg-white px-4 py-4 text-black outline-none transition placeholder:text-[color-mix(in_oklab,var(--sea-ink-soft)_82%,white_18%)] focus:border-[rgba(37,99,235,0.45)] focus:shadow-[0_0_0_3px_rgba(37,99,235,0.10)]'
 
@@ -23,7 +23,6 @@ export default function LeadForm({
       id={id}
       className="rounded-2xl border border-[var(--line)] bg-white p-6 shadow-[0_16px_36px_rgba(15,23,42,0.06)] sm:p-8"
     >
-      {eyebrow ? <p className="island-kicker mb-3">{eyebrow}</p> : null}
       <h2 className="m-0 text-[1.85rem] leading-tight font-bold tracking-tight text-black">
         {heading}
       </h2>

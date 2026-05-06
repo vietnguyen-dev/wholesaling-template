@@ -15,7 +15,7 @@
     "check": "prettier --check ."
   },
   "dependencies": {
-    "@keith-chen/lead-gen-content": "^1.0.1",
+    "@keith-chen/lead-gen-content": "^1.0.2",
     "@tailwindcss/vite": "^4.1.18",
     "@tanstack/react-devtools": "latest",
     "@tanstack/react-router": "latest",
