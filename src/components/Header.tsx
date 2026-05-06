@@ -84,10 +84,10 @@ export default function Header() {
         <div className="hidden lg:flex lg:justify-end">
           <Link
             to="/get-offer"
-            className="inline-flex min-h-14 min-w-[11rem] items-center justify-center rounded-[0.8rem] bg-[#16a34a] px-8 py-4 text-[1rem] font-extrabold uppercase tracking-[0.03em] !text-white no-underline transition hover:bg-[#15803d] hover:!text-white"
+            className="inline-flex min-h-14 min-w-[11rem] items-center justify-center rounded-md bg-[#16a34a] px-8 py-4 text-[1rem] font-extrabold uppercase tracking-[0.03em] !text-white no-underline transition hover:bg-[#15803d] hover:!text-white"
             activeProps={{
               className:
-                'inline-flex min-h-14 min-w-[11rem] items-center justify-center rounded-[0.8rem] bg-[#16a34a] px-8 py-4 text-[1rem] font-extrabold uppercase tracking-[0.03em] !text-white no-underline transition hover:bg-[#15803d] hover:!text-white',
+                'inline-flex min-h-14 min-w-[11rem] items-center justify-center rounded-md bg-[#16a34a] px-8 py-4 text-[1rem] font-extrabold uppercase tracking-[0.03em] !text-white no-underline transition hover:bg-[#15803d] hover:!text-white',
             }}
           >
             Get Offer
@@ -137,10 +137,10 @@ export default function Header() {
             <Link
               to="/get-offer"
               onClick={closeMenu}
-              className="mt-3 inline-flex min-h-14 w-full items-center justify-center rounded-[0.9rem] bg-[#16a34a] px-8 py-4 text-[1rem] font-extrabold uppercase tracking-[0.03em] !text-white no-underline transition hover:bg-[#15803d] hover:!text-white"
+              className="mt-3 inline-flex min-h-14 w-full items-center justify-center rounded-md bg-[#16a34a] px-8 py-4 text-[1rem] font-extrabold uppercase tracking-[0.03em] !text-white no-underline transition hover:bg-[#15803d] hover:!text-white"
               activeProps={{
                 className:
-                  'mt-3 inline-flex min-h-14 w-full items-center justify-center rounded-[0.9rem] bg-[#16a34a] px-8 py-4 text-[1rem] font-extrabold uppercase tracking-[0.03em] !text-white no-underline transition hover:bg-[#15803d] hover:!text-white',
+                  'mt-3 inline-flex min-h-14 w-full items-center justify-center rounded-md bg-[#16a34a] px-8 py-4 text-[1rem] font-extrabold uppercase tracking-[0.03em] !text-white no-underline transition hover:bg-[#15803d] hover:!text-white',
               }}
             >
               Get Offer
