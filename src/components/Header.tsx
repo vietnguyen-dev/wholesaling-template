@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[var(--header-bg)] px-4 backdrop-blur">
       <nav
-        className="page-wrap py-3 sm:py-4 lg:grid lg:grid-cols-[auto_1fr_auto] lg:items-center lg:gap-8"
+        className="page-wrap relative py-3 sm:py-4 lg:grid lg:grid-cols-[auto_1fr_auto] lg:items-center lg:gap-8"
         aria-label="Primary"
       >
         <div className="flex items-center justify-between gap-4 lg:contents">
@@ -37,22 +37,36 @@ export default function Header() {
                 <span className="text-[1.1rem] font-extrabold tracking-tight">
                   {siteMeta.brandName}
                 </span>
-                <span className="mt-1 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-black">
-                  Property Buyers
-                </span>
               </span>
             </Link>
           </h2>
 
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-[0.85rem] border border-[var(--line)] px-4 py-2 text-[0.9rem] font-bold text-black lg:hidden"
+            className="relative z-30 inline-flex h-12 w-12 items-center justify-center rounded-none border border-[var(--line)] bg-white text-black shadow-[0_12px_30px_rgba(15,23,42,0.12)] lg:hidden"
             aria-expanded={isMenuOpen}
             aria-controls="mobile-nav-menu"
             aria-label="Toggle navigation menu"
             onClick={() => setIsMenuOpen((open) => !open)}
           >
-            Menu
+            <span className="sr-only">Menu</span>
+            <span className="relative h-5 w-5">
+              <span
+                className={`absolute top-0 left-0 h-0.5 w-5 rounded-full bg-current transition ${
+                  isMenuOpen ? 'translate-y-[9px] rotate-45' : ''
+                }`}
+              />
+              <span
+                className={`absolute top-[9px] left-0 h-0.5 w-5 rounded-full bg-current transition ${
+                  isMenuOpen ? 'opacity-0' : ''
+                }`}
+              />
+              <span
+                className={`absolute top-[18px] left-0 h-0.5 w-5 rounded-full bg-current transition ${
+                  isMenuOpen ? '-translate-y-[9px] -rotate-45' : ''
+                }`}
+              />
+            </span>
           </button>
         </div>
 
@@ -97,7 +111,7 @@ export default function Header() {
         {isMenuOpen ? (
           <div
             id="mobile-nav-menu"
-            className="mt-4 rounded-[1.25rem] bg-[var(--hero-b)] p-3 text-white shadow-[0_18px_40px_rgba(15,23,42,0.24)] lg:hidden"
+            className="absolute top-full right-0 left-0 z-20 mt-2 rounded-none bg-[var(--hero-b)] p-3 text-white shadow-[0_18px_40px_rgba(15,23,42,0.24)] lg:hidden"
           >
             <div className="space-y-2 text-[1rem] font-semibold">
               <Link

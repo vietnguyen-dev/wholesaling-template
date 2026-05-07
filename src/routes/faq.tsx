@@ -1,6 +1,9 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ArrowRight } from 'lucide-react'
+import FaqItem from '../components/FaqItem'
 import { faqContent } from '../content/site'
+import homeAltImage from '../img/home2.jpg'
+import neighborhoodImage from '../img/neighborhood2.png'
 
 export const Route = createFileRoute('/faq')({
   head: () => ({
@@ -28,7 +31,12 @@ function FaqPage() {
 
   return (
     <main>
-      <section className="bg-[var(--hero-a)] text-white">
+      <section
+        className="bg-[var(--hero-a)] bg-cover bg-center text-white"
+        style={{
+          backgroundImage: `linear-gradient(rgba(11, 63, 153, 0.82), rgba(15, 79, 191, 0.82)), url(${homeAltImage})`,
+        }}
+      >
         <div className={`${sectionShell} pt-10 pb-18 sm:pt-12 sm:pb-20`}>
           <div className="max-w-3xl">
             <h1
@@ -63,15 +71,11 @@ function FaqPage() {
                 </div>
                 <div className="mt-8 space-y-4">
                   {category.items.map((item) => (
-                    <article
+                    <FaqItem
                       key={item.question}
-                      className="rounded-2xl border border-[var(--line)] bg-[var(--sand)] p-5 sm:p-6"
-                    >
-                      <h3 className="m-0 text-[1rem] font-semibold text-black">{item.question}</h3>
-                      <p className="mt-3 text-[0.98rem] leading-7 text-[var(--sea-ink-soft)]">
-                        {item.answer}
-                      </p>
-                    </article>
+                      question={item.question}
+                      answer={item.answer}
+                    />
                   ))}
                 </div>
                 <div className="mt-8 flex justify-center">
@@ -86,7 +90,12 @@ function FaqPage() {
         </div>
       </section>
 
-      <section className="bg-[var(--hero-a)] text-white">
+      <section
+        className="bg-[var(--hero-a)] bg-cover bg-center text-white"
+        style={{
+          backgroundImage: `linear-gradient(rgba(11, 63, 153, 0.9), rgba(15, 79, 191, 0.9)), url(${neighborhoodImage})`,
+        }}
+      >
         <div className={sectionShell}>
           <div className="px-6 py-10 sm:px-8 sm:py-12">
             <div className="mx-auto max-w-2xl text-center">

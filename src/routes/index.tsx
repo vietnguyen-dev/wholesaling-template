@@ -1,7 +1,10 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
 import { ArrowRight, CheckCircle2 } from 'lucide-react'
+import FaqItem from '../components/FaqItem'
 import LeadForm from '../components/LeadForm'
 import { homeContent } from '../content/site'
+import homeHeroImage from '../img/home2.jpg'
+import neighborhoodImage from '../img/neighborhood2.png'
 
 const home = homeContent
 
@@ -33,9 +36,14 @@ function App() {
 
   return (
     <main>
-      <section className="bg-[var(--hero-a)] text-white">
+      <section
+        className="bg-[var(--hero-a)] bg-cover bg-center text-white"
+        style={{
+          backgroundImage: `linear-gradient(rgba(11, 63, 153, 0.74), rgba(15, 79, 191, 0.74)), url(${homeHeroImage})`,
+        }}
+      >
         <div className={`${sectionShell} pt-10 pb-18 sm:pt-12 sm:pb-20`}>
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(20rem,26rem)] lg:items-start">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(20rem,26rem)] lg:items-center">
             <div className="max-w-3xl">
               <h1
                 className={`${serifTitle} max-w-4xl text-[2.4rem] leading-[1.02] font-bold text-white sm:text-[3.4rem] lg:text-[4.35rem]`}
@@ -56,12 +64,6 @@ function App() {
                 ))}
               </div>
 
-              <div className="mt-8">
-                <a href="#offer-form" className={primaryCta}>
-                  {home.hero.primaryCTA}
-                  <ArrowRight size={18} />
-                </a>
-              </div>
             </div>
 
             <LeadForm
@@ -70,6 +72,7 @@ function App() {
               heading={home.hero.formHeading}
               description={home.hero.formSubHeading}
               buttonText={home.hero.formButton}
+              buttonHref="/get-offer"
             />
           </div>
         </div>
@@ -110,9 +113,9 @@ function App() {
           </div>
 
           <div className="mt-8 flex justify-center">
-            <a href="#offer-form" className={primaryCta}>
+            <Link to="/get-offer" className={primaryCta}>
               {home.steps.formButton}
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -143,9 +146,9 @@ function App() {
           </div>
 
           <div className="mt-8">
-            <a href="#offer-form" className={primaryCta}>
+            <Link to="/get-offer" className={primaryCta}>
               {home.reasons.formButton}
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -190,14 +193,19 @@ function App() {
           </div>
 
           <div className="mt-8 flex justify-center">
-            <a href="#offer-form" className={primaryCta}>
+            <Link to="/get-offer" className={primaryCta}>
               {home.prosAndCons.formButton}
-            </a>
+            </Link>
           </div>
         </div>
       </section>
 
-      <section className="bg-[var(--hero-a)] text-white">
+      <section
+        className="bg-[var(--hero-a)] bg-cover bg-center text-white"
+        style={{
+          backgroundImage: `linear-gradient(rgba(11, 63, 153, 0.88), rgba(15, 79, 191, 0.88)), url(${neighborhoodImage})`,
+        }}
+      >
         <div className={sectionShell}>
           <div className="mx-auto flex max-w-5xl flex-col gap-8 text-center md:flex-row md:items-center md:justify-between md:text-left">
             <div className="max-w-2xl">
@@ -229,23 +237,17 @@ function App() {
 
                 <div className="mt-8 space-y-4">
                   {group.faq.map((item) => (
-                    <article
+                    <FaqItem
                       key={item.question}
-                      className="rounded-2xl border border-[var(--line)] bg-[var(--sand)] p-5 sm:p-6"
-                    >
-                      <h3 className="m-0 text-[1rem] font-semibold text-black">
-                        {item.question}
-                      </h3>
-                      <p className="mt-3 text-[0.98rem] leading-7 text-[var(--sea-ink-soft)]">
-                        {item.answer}
-                      </p>
-                    </article>
+                      question={item.question}
+                      answer={item.answer}
+                    />
                   ))}
                 </div>
                 <div className="mt-8 flex justify-center">
-                  <a href="#offer-form" className={primaryCta}>
+                  <Link to="/get-offer" className={primaryCta}>
                     {group.formButton}
-                  </a>
+                  </Link>
                 </div>
               </article>
             ))}
@@ -253,7 +255,12 @@ function App() {
         </div>
       </section>
 
-      <section className="bg-[var(--hero-a)] text-white">
+      <section
+        className="bg-[var(--hero-a)] bg-cover bg-center text-white"
+        style={{
+          backgroundImage: `linear-gradient(rgba(11, 63, 153, 0.9), rgba(15, 79, 191, 0.9)), url(${neighborhoodImage})`,
+        }}
+      >
         <div className={sectionShell}>
           <div className="px-6 py-10 sm:px-8 sm:py-12">
             <div className="mx-auto max-w-2xl text-center">
@@ -266,10 +273,10 @@ function App() {
                 {home.CTA.subHeading}
               </p>
               <div className="mt-8 flex justify-center">
-                <a href="#offer-form" className={primaryCta}>
+                <Link to="/get-offer" className={primaryCta}>
                   {home.CTA.primaryCta}
                   <ArrowRight size={18} />
-                </a>
+                </Link>
               </div>
             </div>
           </div>

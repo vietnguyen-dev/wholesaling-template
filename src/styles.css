@@ -140,17 +140,17 @@ a {
 
 .nav-link-mobile {
   display: block;
-  padding: 0.85rem 1rem;
-  border-radius: 0.9rem;
-  background: rgba(255, 255, 255, 0.08);
+  padding: 0.65rem 0;
   color: white;
   text-decoration: none;
 }
 
 .nav-link-mobile:hover,
 .nav-link-mobile.is-active {
-  background: rgba(255, 255, 255, 0.16);
-  color: white;
+  color: var(--hero-copy);
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-underline-offset: 0.2em;
 }
 
 @media (max-width: 640px) {

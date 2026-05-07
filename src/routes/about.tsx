@@ -1,7 +1,8 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { Link, createFileRoute } from '@tanstack/react-router'
 import { ArrowRight } from 'lucide-react'
 import LeadForm from '../components/LeadForm'
 import { aboutContent } from '../content/site'
+import neighborhoodImage from '../img/neighborhood2.png'
 
 export const Route = createFileRoute('/about')({
   head: () => ({
@@ -31,37 +32,26 @@ function AboutPage() {
 
   return (
     <main>
-      <section className="bg-[var(--hero-a)] text-white">
+      <section
+        className="bg-[var(--hero-a)] bg-cover bg-center text-white"
+        style={{
+          backgroundImage: `linear-gradient(rgba(11, 63, 153, 0.74), rgba(15, 79, 191, 0.74)), url(${neighborhoodImage})`,
+        }}
+      >
         <div className={`${sectionShell} pt-10 pb-18 sm:pt-12 sm:pb-20`}>
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,26rem)] lg:items-start">
-            <article className="max-w-3xl">
-              <h1
-                className={`${serifTitle} max-w-4xl text-[2.4rem] leading-[1.02] font-bold text-white sm:text-[3.4rem] lg:text-[4.1rem]`}
-              >
-                {aboutContent.hero.title}
-              </h1>
-              <p className="mt-5 max-w-2xl text-[1rem] leading-8 text-[var(--hero-copy)] sm:text-[1.05rem]">
-                {aboutContent.hero.subTitle}
-              </p>
-              <p className="mt-4 max-w-2xl text-[1rem] leading-8 text-[var(--hero-copy)]">
-                {aboutContent.hero.description}
-              </p>
-              <div className="mt-8">
-                <a href="#about-offer-form" className={primaryCta}>
-                  {aboutContent.about.formButton}
-                  <ArrowRight size={18} />
-                </a>
-              </div>
-            </article>
-
-            <LeadForm
-              id="about-offer-form"
-              eyebrow={aboutContent.CTA.formHeading}
-              heading={aboutContent.CTA.heading}
-              description={aboutContent.CTA.formSubHeading}
-              buttonText={aboutContent.CTA.formButton}
-            />
-          </div>
+          <article className="max-w-3xl">
+            <h1
+              className={`${serifTitle} max-w-4xl text-[2.4rem] leading-[1.02] font-bold text-white sm:text-[3.4rem] lg:text-[4.1rem]`}
+            >
+              {aboutContent.hero.title}
+            </h1>
+            <p className="mt-5 max-w-2xl text-[1rem] leading-8 text-[var(--hero-copy)] sm:text-[1.05rem]">
+              {aboutContent.hero.subTitle}
+            </p>
+            <p className="mt-4 max-w-2xl text-[1rem] leading-8 text-[var(--hero-copy)]">
+              {aboutContent.hero.description}
+            </p>
+          </article>
         </div>
       </section>
 
@@ -75,10 +65,10 @@ function AboutPage() {
               {aboutContent.about.description}
             </p>
             <div className="mt-8 flex justify-center">
-              <a href="#about-offer-form" className={primaryCta}>
+              <Link to="/get-offer" className={primaryCta}>
                 Get Offer
                 <ArrowRight size={18} />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -112,15 +102,20 @@ function AboutPage() {
             ))}
           </div>
           <div className="mt-8 flex justify-center">
-            <a href="#about-offer-form" className={primaryCta}>
+            <Link to="/get-offer" className={primaryCta}>
               Get Offer
               <ArrowRight size={18} />
-            </a>
+            </Link>
           </div>
         </div>
       </section>
 
-      <section className="bg-[var(--hero-a)] text-white">
+      <section
+        className="bg-[var(--hero-a)] bg-cover bg-center text-white"
+        style={{
+          backgroundImage: `linear-gradient(rgba(11, 63, 153, 0.9), rgba(15, 79, 191, 0.9)), url(${neighborhoodImage})`,
+        }}
+      >
         <div className={sectionShell}>
           <div className="px-6 py-10 sm:px-8 sm:py-12">
             <div className="mx-auto max-w-2xl text-center">
@@ -131,10 +126,10 @@ function AboutPage() {
                 {aboutContent.CTA.formSubHeading}
               </p>
               <div className="mt-8 flex justify-center">
-                <a href="#about-offer-form" className={primaryCta}>
+                <Link to="/get-offer" className={primaryCta}>
                   {aboutContent.CTA.formButton}
                   <ArrowRight size={18} />
-                </a>
+                </Link>
               </div>
             </div>
           </div>

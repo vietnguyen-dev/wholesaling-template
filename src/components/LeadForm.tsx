@@ -1,3 +1,4 @@
+import { Link } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
 
 type LeadFormProps = {
@@ -6,6 +7,11 @@ type LeadFormProps = {
   description: string
   buttonText: string
   id?: string
+  includeNameField?: boolean
+  includePhoneField?: boolean
+  showIntroCopy?: boolean
+  className?: string
+  buttonHref?: string
 }
 
 type AwsAutocompleteResult = {
@@ -19,13 +25,29 @@ type AwsAutocompleteResponse = {
   ResultItems?: AwsAutocompleteResult[]
 }
 
+const mapSuggestionLabels = (results?: AwsAutocompleteResult[]) =>
+  results
+    ?.map((item) => item.Address?.Label || item.Title)
+    .filter((value): value is string => Boolean(value))
+    .filter((value, index, values) => values.indexOf(value) === index) || []
+
+const looksLikePostalSearch = (query: string) =>
+  /^\d{5}(?:-\d{4})?$/.test(query)
+
 export default function LeadForm({
   eyebrow,
   heading,
   description,
   buttonText,
   id,
+  includeNameField = false,
+  includePhoneField = false,
+  showIntroCopy = true,
+  className = 'rounded-2xl border border-[var(--line)] bg-white p-6 shadow-[0_16px_36px_rgba(15,23,42,0.06)] sm:p-8',
+  buttonHref,
 }: LeadFormProps) {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
   const [address, setAddress] = useState('')
   const [suggestions, setSuggestions] = useState<string[]>([])
   const [lookupError, setLookupError] = useState('')
@@ -57,21 +79,25 @@ export default function LeadForm({
     const timeoutId = window.setTimeout(async () => {
       try {
         setIsLookingUp(true)
+        const requestOptions = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          signal: controller.signal,
+        }
+        const sharedBody = {
+          QueryText: query,
+          MaxResults: 5,
+          Filter: {
+            IncludeCountries: ['USA'],
+          },
+        }
         const response = await fetch(
           `https://places.geo.${awsLocationRegion}.api.aws/v2/autocomplete?key=${encodeURIComponent(awsLocationKey)}`,
           {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              QueryText: query,
-              MaxResults: 5,
-              Filter: {
-                IncludeCountries: ['USA'],
-              },
-            }),
-            signal: controller.signal,
+            ...requestOptions,
+            body: JSON.stringify(sharedBody),
           },
         )
 
@@ -80,12 +106,27 @@ export default function LeadForm({
         }
 
         const data = (await response.json()) as AwsAutocompleteResponse
-        const nextSuggestions =
-          data.ResultItems?.map((item) => item.Address?.Label || item.Title)
-            .filter((value): value is string => Boolean(value))
-            .filter(
-              (value, index, values) => values.indexOf(value) === index,
-            ) || []
+        let nextSuggestions = mapSuggestionLabels(data.ResultItems)
+
+        if (nextSuggestions.length === 0 && looksLikePostalSearch(query)) {
+          const geocodeResponse = await fetch(
+            `https://places.geo.${awsLocationRegion}.api.aws/v2/geocode?key=${encodeURIComponent(awsLocationKey)}`,
+            {
+              ...requestOptions,
+              body: JSON.stringify(sharedBody),
+            },
+          )
+
+          if (geocodeResponse.ok) {
+            const geocodeData =
+              (await geocodeResponse.json()) as AwsAutocompleteResponse
+            nextSuggestions = mapSuggestionLabels(geocodeData.ResultItems)
+          } else {
+            console.error(
+              `AWS Location geocode fallback failed with ${geocodeResponse.status}`,
+            )
+          }
+        }
 
         setSuggestions(nextSuggestions)
         setLookupError('')
@@ -145,16 +186,42 @@ export default function LeadForm({
   return (
     <section
       id={id}
-      className="rounded-2xl border border-[var(--line)] bg-white p-6 shadow-[0_16px_36px_rgba(15,23,42,0.06)] sm:p-8"
+      className={className}
     >
-      <h2 className="m-0 text-[1.85rem] leading-tight font-bold tracking-tight text-black">
-        {heading}
-      </h2>
-      <p className="mt-3 max-w-xl text-base leading-7 text-[var(--sea-ink-soft)]">
-        {description}
-      </p>
+      {showIntroCopy ? (
+        <>
+          <h2 className="m-0 text-[1.85rem] leading-tight font-bold tracking-tight text-black">
+            {heading}
+          </h2>
+          <p className="mt-3 max-w-xl text-base leading-7 text-[var(--sea-ink-soft)]">
+            {description}
+          </p>
+        </>
+      ) : null}
 
-      <form className="mt-6 space-y-4">
+      <form className={`${showIntroCopy ? 'mt-6' : 'mt-0'} space-y-4`}>
+        {includeNameField ? (
+          <div className="grid gap-4 sm:grid-cols-2">
+            <input
+              type="text"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+              className={fieldClass}
+              aria-label="Full name"
+              placeholder="Name"
+              autoComplete="name"
+            />
+            <input
+              type="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              className={fieldClass}
+              aria-label="Email address"
+              placeholder="Email"
+              autoComplete="email"
+            />
+          </div>
+        ) : null}
         <div className="relative">
           <input
             ref={fieldRef}
@@ -182,6 +249,7 @@ export default function LeadForm({
             aria-haspopup="listbox"
             placeholder="Property address"
             autoComplete="street-address"
+            required
           />
           {showSuggestions ? (
             <ul
@@ -204,19 +272,28 @@ export default function LeadForm({
             </ul>
           ) : null}
         </div>
-        <input
-          type="tel"
-          className={fieldClass}
-          aria-label="Phone number"
-          placeholder="Phone #"
-        />
+        {includePhoneField ? (
+          <input
+            type="tel"
+            className={fieldClass}
+            aria-label="Phone number"
+            placeholder="Phone"
+            required
+          />
+        ) : null}
         {showLookupHint ? (
           <p className={helperTextClass}>{lookupMessage}</p>
         ) : null}
 
-        <button type="submit" className={`${primaryCta} w-full border-0`}>
-          {buttonText}
-        </button>
+        {buttonHref ? (
+          <Link to={buttonHref} className={`${primaryCta} w-full border-0`}>
+            {buttonText}
+          </Link>
+        ) : (
+          <button type="submit" className={`${primaryCta} w-full border-0`}>
+            {buttonText}
+          </button>
+        )}
       </form>
     </section>
   )
