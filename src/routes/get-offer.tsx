@@ -59,46 +59,6 @@ function GetOfferPage() {
           </div>
         </div>
       </section>
-
-      <section className="bg-white">
-        <div className={sectionShell}>
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className={sectionTitle}>
-              {getOfferContent.title}
-            </h2>
-            <p className="mt-5 text-[1rem] leading-8 text-[var(--sea-ink-soft)]">
-              {getOfferContent.description}
-            </p>
-            <div className="mt-8 flex justify-center">
-              <a href="#offer-form" className={primaryCta}>
-                Get Offer
-                <ArrowRight size={18} />
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[var(--hero-a)] text-white">
-        <div className={sectionShell}>
-          <div className="px-6 py-10 sm:px-8 sm:py-12">
-            <div className="mx-auto max-w-2xl text-center">
-              <h2 className={`${serifTitle} text-[2rem] leading-tight font-bold text-white sm:text-[2.5rem]`}>
-                {getOfferContent.title}
-              </h2>
-              <p className="mt-5 text-[1rem] leading-8 text-[var(--hero-copy)]">
-                {getOfferContent.description}
-              </p>
-              <div className="mt-8 flex justify-center">
-                <a href="#offer-form" className={primaryCta}>
-                  Request My Offer
-                  <ArrowRight size={18} />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
   )
 }
